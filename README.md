@@ -13,13 +13,13 @@ Build del proyecto en [Heroku](https://dashboard.heroku.com/apps/practica-bd/dep
 `heroku login `
 
 ### Clonar codigo fuente de repositorio de heroku
-*`heroku git:clone -a practica-bd`
-*`cd practica-bd`
+* `heroku git:clone -a practica-bd`
+* `cd practica-bd`
 
 ### Deploy
-*`git add .`
-*`git commit -am "make it better"`
-*`git push heroku master`
+* `git add .`
+* `git commit -am "make it better"`
+* `git push heroku master`
 
 ## Queries 
 
