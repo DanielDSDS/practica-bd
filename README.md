@@ -3,7 +3,7 @@
 
 Build del proyecto en [Heroku](https://dashboard.heroku.com/apps/practica-bd/deploy/heroku-git)
 
-[Build en vivo] (https://practica-bd.herokuapp.com/)
+[Build en vivo](https://practica-bd.herokuapp.com/)
 
 ## Guia de deploy a Heroku desde cli
 
