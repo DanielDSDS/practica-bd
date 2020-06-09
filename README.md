@@ -7,16 +7,16 @@ Build del proyecto en [Heroku](https://dashboard.heroku.com/apps/practica-bd/dep
 
 ## Guia de deploy a Heroku desde cli
 
-### [Instalar CLI de Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+#### [Instalar CLI de Heroku](https://devcenter.heroku.com/articles/heroku-cli)
 
-### Login desde linea de comando
+#### Login desde linea de comando
 `heroku login `
 
-### Clonar codigo fuente de repositorio de heroku
+#### Clonar codigo fuente de repositorio de heroku
 * `heroku git:clone -a practica-bd`
 * `cd practica-bd`
 
-### Deploy
+#### Deploy
 * `git add .`
 * `git commit -am "make it better"`
 * `git push heroku master`
