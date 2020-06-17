@@ -2,7 +2,7 @@ import React from 'react';
 
 const Actores = () => {
     return(
-        <div class="center" >Hola desde actores</div>
+        <div class="center" >Hola desde actores CON EXPRESS!!!!!</div>
     );
 }
 
