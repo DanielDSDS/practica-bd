@@ -9,8 +9,10 @@ const Peliculas = () => {
             const body = {peliculas};
             const response = await fetch("http://localhost:5000/peliculas/list",{
                 method:"GET",
-                headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(body)
+                headers : {"Content-Type":"application/json"}
+            })
+            .then((a) => {
+                console.log(a.json());
             })
             console.log(response);
         }catch(err){
@@ -22,7 +24,7 @@ const Peliculas = () => {
         <div>
             <div class="center">bruv momento</div>
             <div>
-                <button onClick={getPeliculas}>Peliculas</button>
+                <button class="center" onClick={getPeliculas}>Peliculas</button>
             </div>
         </div>
 

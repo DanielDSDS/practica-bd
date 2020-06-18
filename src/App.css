@@ -2,6 +2,11 @@ html{
     font-size: 16px;
 }
 
+.btn-wrapper{
+    margin: auto;
+    justify-content: center;
+}
+
 .landing-header{
     text-align: center;
     text-transform: uppercase;

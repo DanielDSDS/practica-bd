@@ -6,10 +6,11 @@ const path = require('path');
 
 
 /* Modificacion temporal para uso en dev mode*/
+process.env.NODE_ENV = 'production';
 const pool = require('./db');
 const cors = require('cors'); 
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
-process.env.NODE_ENV = 'production';
+
 
 const normalizePort = port => parseInt(port,10);
 const PORT = normalizePort(process.env.PORT || 5000)
