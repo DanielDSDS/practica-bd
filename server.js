@@ -4,25 +4,89 @@ const compression = require('compression');
 const morgan = require('morgan');
 const path = require('path');
 
+
+/* Modificacion temporal para uso en dev mode*/
+const pool = require('./db');
+const cors = require('cors'); 
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+//process.env.NODE_ENV = 'production';
+
 const normalizePort = port => parseInt(port,10);
 const PORT = normalizePort(process.env.PORT || 5000)
-
 const app = express();
 const dev = app.get('env') !== 'production';
+
+app.use(cors());//añadido para conectar con db
+app.use(express.json());//añadido para conectar con db
 
 if(!dev){
     app.disable('x-powered-by');
     app.use(compression());
     app.use(morgan('common'));
-
     app.use(express.static(path.resolve(__dirname,'build')));
-    
-    app.get('*',(req,res) => {
-        res.sendFile(path.resolve(__dirname,'build','index.html'))
-    })
-}
 
-if(dev){
+
+    //Queries de actores
+    //Obtener lista de actores
+    app.get('/actores',async(req,res) => {
+        try {
+            const listActors = await pool.query("SELECT * FROM actores");
+            res.json(listActors.rows);
+            console.log(listActors.rows);
+        }catch(err){
+            console.log(err.message);
+        }
+    });
+
+    //Queries de peliculas
+    //Obtener lista de peliculas
+    app.get('/peliculas', async(req,res) => {
+        try{
+            const listPeliculas = await pool.query("SELECT * FROM peliculas");
+            res.json(listPeliculas.rows);
+            console.log(listPeliculas.rows);
+        }catch(err){
+            console.log(err.message);
+        }
+    });
+
+    //Queries de clientes
+    //Obtener lista de clientes
+    app.get('/clientes',async(req,res) => {
+        try{
+            const listClientes = await pool.query("SELECT * FROM clientes");
+            res.json(listClientes.rows);
+            console.log(listClientes.rows);
+        }catch(err){
+
+        }
+    });
+
+    //Queries de prestamos
+    //Obtener lista de prestamos
+    app.get('/prestamos',async(req,res) => {
+        try{
+            const listPrestamos = await pool.query("SELECT * FROM prestamos");
+            res.json(listPrestamos.rows);
+            console.log(listPrestamos.rows)
+        }catch(err){
+            console.log(err.message);
+        }
+    });
+
+    //Queries de estudios
+    //Obtener lista de estudios
+    app.get('/estudios',async(req,res) => {
+        try{
+            const listEstudios = await pool.query("SELECT * FROM estudios");
+            res.json(listEstudios.rows);
+            console.log(listEstudios.rows);
+        }catch(err){
+
+        }
+    });
+
+}else{
     app.use(morgan('dev'))
 }
 
@@ -32,3 +96,5 @@ server.listen(PORT ,err => {
     if(err) throw err
     console.log('Server started');
 })
+
+
