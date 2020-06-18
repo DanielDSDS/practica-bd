@@ -9,7 +9,7 @@ const path = require('path');
 const pool = require('./db');
 const cors = require('cors'); 
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
-//process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production';
 
 const normalizePort = port => parseInt(port,10);
 const PORT = normalizePort(process.env.PORT || 5000)
@@ -25,7 +25,6 @@ if(!dev){
     app.use(morgan('common'));
     app.use(express.static(path.resolve(__dirname,'build')));
 
-
     //Queries de actores
     //Obtener lista de actores
     app.get('/actores',async(req,res) => {
@@ -40,7 +39,7 @@ if(!dev){
 
     //Queries de peliculas
     //Obtener lista de peliculas
-    app.get('/peliculas', async(req,res) => {
+    app.get('/peliculas/list', async(req,res) => {
         try{
             const listPeliculas = await pool.query("SELECT * FROM peliculas");
             res.json(listPeliculas.rows);
