@@ -7,7 +7,7 @@ const Peliculas = () => {
         e.preventDefault();
         try{
             const body = {peliculas};
-            const response = await fetch("http://localhost:5000/peliculas/list",{
+            const response = await fetch("https://practica-bd.herokuapp.com/peliculas/list",{
                 method:"GET",
                 headers : {"Content-Type":"application/json"}
             })
@@ -22,9 +22,9 @@ const Peliculas = () => {
 
     return(
         <div>
-            <div class="center">bruv momento</div>
+            <div class="center mb-3">bruv momento</div>
             <div>
-                <button class="center" onClick={getPeliculas}>Peliculas</button>
+                <button class="center" onClick={getPeliculas}>Peliculas (revisar logs)</button>
             </div>
         </div>
 
