@@ -23,11 +23,10 @@ const Peliculas = () => {
     return(
         <div>
             <div class="center mb-3">cambie este texto nada mas para hacer un commit</div>
-            <div>
-                <button class="center" onClick={getPeliculas}>Peliculas (revisar logs)</button>
+            <div class="btn-wrapper">
+                <button onClick={getPeliculas}>Peliculas (revisar logs)</button>
             </div>
         </div>
-
     );
 }
 
