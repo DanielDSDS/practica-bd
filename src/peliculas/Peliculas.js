@@ -31,11 +31,12 @@ const Peliculas = () => {
                 </div>
             </form>
 
-            <div className="peliculas-list">
+            <ul className="peliculas-list">
                 {peliculas.map(pelicula => 
-                    <div key={pelicula.id_pelicula}>
-                    </div>)}
-            </div>
+                    <li key={pelicula.id_pelicula}>
+                        {pelicula.titulo}
+                    </li>)}
+            </ul>
         </div>
     );
 }
