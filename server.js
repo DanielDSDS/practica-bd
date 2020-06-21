@@ -6,7 +6,7 @@ const path = require('path');
 
 
 /* Modificacion temporal para uso en dev mode*/
-process.env.NODE_ENV = 'production';
+//process.env.NODE_ENV = 'production';
 const pool = require('./db');
 const cors = require('cors'); 
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
@@ -25,6 +25,10 @@ if(!dev){
     app.use(compression());
     app.use(morgan('common'));
     app.use(express.static(path.resolve(__dirname,'build')));
+
+}else{
+    app.use(morgan('dev'))
+}
 
     //Queries de actores
     //Obtener lista de actores
@@ -85,10 +89,6 @@ if(!dev){
 
         }
     });
-
-}else{
-    app.use(morgan('dev'))
-}
 
 const server = createServer(app);
 

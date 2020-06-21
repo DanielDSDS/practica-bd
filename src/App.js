@@ -1,5 +1,6 @@
-import React from 'react';
 import './App.css';
+
+import React from 'react';
 import { BrowserRouter as Router, Switch, Link, Route} from 'react-router-dom';
 
 import Prestamos from './prestamos/Prestamos';
@@ -16,10 +17,10 @@ const App = () => {
     return(
         <Router>
             <div>
-                <h1 class="landing-header">practica 2</h1>
+                <h1 className="landing-header">practica 2</h1>
             </div>
             <div>
-                <div class="landing-nav">
+                <div className="landing-nav">
                     <Link to={'/'} >Landing</Link>
                     <Link to={'/peliculas'} >Peliculas</Link>
                     <Link to={'/actores'} >Actores</Link>

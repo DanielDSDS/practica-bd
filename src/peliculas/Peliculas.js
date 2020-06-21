@@ -1,30 +1,40 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import './Peliculas.css';
 
 const Peliculas = () => {
-    const [peliculas, setPeliculas] = useState("");
+    const [peliculas, setPeliculas] = useState([]);
 
-    const getPeliculas = async(e) => {
-        e.preventDefault();
-        try{
-            const body = {peliculas};
-            const response = await fetch("https://practica-bd.herokuapp.com/peliculas/list",{
-                method:"GET",
-                headers : {"Content-Type":"application/json"}
-            })
-            .then((a) => {
-                console.log(a.json());
-            })
-            console.log(response);
-        }catch(err){
-            console.error(err);
-        }
+    useEffect(() => {
+        fetchPeliculas();
+    }, []);
+
+    const fetchPeliculas = () => {
+        fetch("https://practica-bd.herokuapp.com/peliculas/list")
+        .then(res => res.json())
+        .then(data => setPeliculas(data))
+        .catch(err => console.log(err.message))
     }
 
     return(
-        <div>
-            <div class="center mb-3">cambie este texto nada mas para hacer un commit</div>
-            <div class="btn-wrapper">
-                <button onClick={getPeliculas}>Peliculas (revisar logs)</button>
+        <div className="peliculas-container">
+            <form className="peliculas-form">
+                <div className="wrapper">
+                    <div className="">
+                        <input type="text" placeholder="Nombre de pelicula"></input>
+                        <select placeholder="Estudio">
+                        </select>
+                    </div>
+                    <div className="" >
+                        <input></input>
+                        <input></input>
+                    </div>
+                </div>
+            </form>
+
+            <div className="peliculas-list">
+                {peliculas.map(pelicula => 
+                    <div key={pelicula.id_pelicula}>
+                    </div>)}
             </div>
         </div>
     );
