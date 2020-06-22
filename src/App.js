@@ -16,8 +16,10 @@ const App = () => {
 
     return(
         <Router>
-            <div>
+            <div className="header">
+                <h6 className="center">Daniel Di Mella</h6>
                 <h1 className="landing-header">practica 2</h1>
+                <h6 className="center">Carlos Rojas</h6>
             </div>
             <div>
                 <div className="landing-nav">
