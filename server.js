@@ -36,7 +36,6 @@ if(!dev){
         try {
             const listActors = await pool.query("SELECT * FROM actores");
             res.json(listActors.rows);
-            console.log(listActors.rows);
         }catch(err){
             console.log(err.message);
         }
@@ -48,7 +47,14 @@ if(!dev){
         try{
             const listPeliculas = await pool.query("SELECT * FROM peliculas");
             res.json(listPeliculas.rows);
-            console.log(listPeliculas.rows);
+        }catch(err){
+            console.log(err.message);
+        }
+    });
+
+    app.post('/peliculas/post', async(req,res) => {
+        try{
+            const postPeliculas = await pool.query(`INSERT INTO peliculas VALUES(DEFAULT,${req.nombre_pelicula},${req.id_estudio});`)
         }catch(err){
             console.log(err.message);
         }
@@ -60,7 +66,6 @@ if(!dev){
         try{
             const listClientes = await pool.query("SELECT * FROM clientes");
             res.json(listClientes.rows);
-            console.log(listClientes.rows);
         }catch(err){
 
         }
@@ -72,7 +77,6 @@ if(!dev){
         try{
             const listPrestamos = await pool.query("SELECT * FROM prestamos");
             res.json(listPrestamos.rows);
-            console.log(listPrestamos.rows)
         }catch(err){
             console.log(err.message);
         }
@@ -84,7 +88,6 @@ if(!dev){
         try{
             const listEstudios = await pool.query("SELECT * FROM estudios");
             res.json(listEstudios.rows);
-            console.log(listEstudios.rows);
         }catch(err){
 
         }

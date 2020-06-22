@@ -8,16 +8,10 @@
 }
 
 .form-1 .form-control-select{
-    min-width: 10rem ;
+    min-width: 12rem ;
     margin: 1rem;
 }
 
 .wrapper .form-1 .form-control-nombre {
-    min-width: 6rem;
     margin: 1rem;
-}
-
-.form-2 .form-control-fecha{
-    margin: 1rem;
-    min-width: 6rem;
 }
