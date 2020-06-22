@@ -32,7 +32,7 @@ if(!dev){
 
     //Queries de actores
     //Obtener lista de actores
-    app.get('/actores',async(req,res) => {
+    app.get('/actores/get',async(req,res) => {
         try {
             const listActors = await pool.query("SELECT * FROM actores");
             res.json(listActors.rows);
@@ -44,7 +44,7 @@ if(!dev){
 
     //Queries de peliculas
     //Obtener lista de peliculas
-    app.get('/peliculas/list', async(req,res) => {
+    app.get('/peliculas/get', async(req,res) => {
         try{
             const listPeliculas = await pool.query("SELECT * FROM peliculas");
             res.json(listPeliculas.rows);
@@ -56,7 +56,7 @@ if(!dev){
 
     //Queries de clientes
     //Obtener lista de clientes
-    app.get('/clientes',async(req,res) => {
+    app.get('/clientes/get',async(req,res) => {
         try{
             const listClientes = await pool.query("SELECT * FROM clientes");
             res.json(listClientes.rows);
@@ -68,7 +68,7 @@ if(!dev){
 
     //Queries de prestamos
     //Obtener lista de prestamos
-    app.get('/prestamos',async(req,res) => {
+    app.get('/prestamos/get',async(req,res) => {
         try{
             const listPrestamos = await pool.query("SELECT * FROM prestamos");
             res.json(listPrestamos.rows);
@@ -80,7 +80,7 @@ if(!dev){
 
     //Queries de estudios
     //Obtener lista de estudios
-    app.get('/estudios',async(req,res) => {
+    app.get('/estudios/get',async(req,res) => {
         try{
             const listEstudios = await pool.query("SELECT * FROM estudios");
             res.json(listEstudios.rows);

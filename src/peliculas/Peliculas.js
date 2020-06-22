@@ -9,7 +9,7 @@ const Peliculas = () => {
     }, []);
 
     const fetchPeliculas = () => {
-        fetch("https://practica-bd.herokuapp.com/peliculas/list")
+        fetch("https://practica-bd.herokuapp.com/peliculas/get")
         .then(res => res.json())
         .then(data => setPeliculas(data))
         .catch(err => console.log(err.message))
@@ -21,10 +21,11 @@ const Peliculas = () => {
                 <div className="wrapper">
                     <div className="">
                         <input type="text" placeholder="Nombre de pelicula"></input>
-                        <select placeholder="Estudio">
+                        <select disabled>
+                            <option>Estudio</option>
                         </select>
                     </div>
-                    <div className="" >
+                    <div>
                         <input></input>
                         <input></input>
                     </div>
@@ -32,10 +33,7 @@ const Peliculas = () => {
             </form>
 
             <ul className="peliculas-list">
-                {peliculas.map(pelicula => 
-                    <li key={pelicula.id_pelicula}>
-                        {pelicula.titulo}
-                    </li>)}
+                {peliculas.map(pelicula => <li key={pelicula.id_pelicula}>{pelicula.titulo}</li>)}
             </ul>
         </div>
     );
