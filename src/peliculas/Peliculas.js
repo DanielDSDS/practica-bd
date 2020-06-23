@@ -90,7 +90,14 @@ const Peliculas = () => {
                                 </Select>
                         </FormControl>
                     </div>
-                    <Button variant="contained" color="default" onClick={postPelicula(pelicula,estudio)} disableElevation></Button>
+                    <Button 
+                        variant="contained" 
+                        color="default" 
+                        onClick={postPelicula(pelicula,estudio)} 
+                        disableElevation
+                    >
+                        Insertar pelicula
+                    </Button>
                 </div>
             </form>
 
