@@ -16,7 +16,7 @@ const Peliculas = () => {
     useEffect(() => {
         fetchPeliculas();
         fetchEstudios();
-    }, []);
+    }, [pelicula]);
 
     const fetchPeliculas = async() => {
         await fetch("/peliculas/get")
@@ -32,11 +32,10 @@ const Peliculas = () => {
         .catch(err => console.log(err.message))   
     }
 
-    const postPelicula = (e) => {
+    const postPelicula = async(e) => {
         e.preventDefault();
         const body = {pelicula, estudio};
-        console.log(body);
-        fetch("/peliculas/post",{
+        await fetch("/peliculas/post",{
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
