@@ -36,9 +36,10 @@ const Peliculas = () => {
         e.preventDefault();
         console.log(pelicula,estudio)
         fetch("https://practica-bd.herokuapp.com/peliculas/post",{
-            method: 'POST',
-            body: {nombre_pelicula : pelicula, id_estudio : estudio},
-            mode: 'no-cors'
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({nombre_pelicula : pelicula, id_estudio : estudio}),
+            
         })
         .then(res => res.json())
         .then(response => console.log(response))
