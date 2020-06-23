@@ -18,32 +18,29 @@ const Peliculas = () => {
         fetchEstudios();
     }, []);
 
-    const fetchPeliculas = () => {
-        fetch("https://practica-bd.herokuapp.com/peliculas/get")
+    const fetchPeliculas = async() => {
+        await fetch("https://practica-bd.herokuapp.com/peliculas/get")
         .then(res => res.json())
         .then(data => setPeliculas(data))
         .catch(err => console.log(err.message))
     }
 
-    const fetchEstudios = () => {
-        fetch("https://practica-bd.herokuapp.com/estudios/get")
-        .then(res => res.json())
+    const fetchEstudios = async() => {
+        await fetch("https://practica-bd.herokuapp.com/estudios/get")
+        .then(res => res.json()) 
         .then(data => setEstudios(data))
         .catch(err => console.log(err.message))   
     }
 
     const postPelicula = (e) => {
         e.preventDefault();
-        console.log(pelicula,estudio)
+        const body = {pelicula, estudio};
+        console.log(body);
         fetch("https://practica-bd.herokuapp.com/peliculas/post",{
             method: "POST",
             headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({nombre_pelicula : pelicula, id_estudio : estudio}),
-            
+            body: JSON.stringify(body)
         })
-        .then(res => res.json())
-        .then(response => console.log(response))
-        .catch(err => console.log(err.message))
     }
 
     const isEstudiosSet = () => estudios===undefined?true:false;

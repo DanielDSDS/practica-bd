@@ -55,8 +55,7 @@ if(!dev){
     app.post('/peliculas/post', async(req,res) => {
         try{
             console.log(req.body);
-            const postPeliculas = await pool.query("INSERT INTO peliculas VALUES(DEFAULT,'Pelicula','4','06-22-2020',NULL);");
-            console.log(postPeliculas);
+            const postPeliculas = await pool.query("INSERT INTO peliculas VALUES(DEFAULT,$1,$2,'06-23-2020',NULL);",[req.body.pelicula,req.body.estudio]);
         }catch(err){ 
             console.log(err.message);
         }
