@@ -32,12 +32,17 @@ const Peliculas = () => {
         .catch(err => console.log(err.message))   
     }
 
-    const postPelicula = (pelicula,estudio) => {
+    const postPelicula = (e) => {
+        e.preventDefault();
         console.log(pelicula,estudio)
         fetch("https://practica-bd.herokuapp.com/peliculas/post",{
             method: 'POST',
-            body: JSON.stringify({nombre_pelicula : pelicula, id_estudio : estudio})
+            body: {nombre_pelicula : pelicula, id_estudio : estudio},
+            mode: 'no-cors'
         })
+        .then(res => res.json())
+        .then(response => console.log(response))
+        .catch(err => console.log(err.message))
     }
 
     const isEstudiosSet = () => estudios===undefined?true:false;
@@ -53,7 +58,7 @@ const Peliculas = () => {
     return(
         <div className="peliculas-container">
             <h4 className="center">Insertar una nueva pelicula</h4>
-            <form className="peliculas-form">
+            <form className="peliculas-form" onSubmit={postPelicula}>
                 <div className="wrapper">
                     <div className="form-1">
                         <FormControl className="form-control-nombre">
@@ -93,7 +98,7 @@ const Peliculas = () => {
                     <Button 
                         variant="contained" 
                         color="default" 
-                        onClick={postPelicula(pelicula,estudio)} 
+                        type="submit"
                         disableElevation
                     >
                         Insertar pelicula
