@@ -19,14 +19,14 @@ const Peliculas = () => {
     }, []);
 
     const fetchPeliculas = async() => {
-        await fetch("https://practica-bd.herokuapp.com/peliculas/get")
+        await fetch("/peliculas/get")
         .then(res => res.json())
         .then(data => setPeliculas(data))
         .catch(err => console.log(err.message))
     }
 
     const fetchEstudios = async() => {
-        await fetch("https://practica-bd.herokuapp.com/estudios/get")
+        await fetch("/estudios/get")
         .then(res => res.json()) 
         .then(data => setEstudios(data))
         .catch(err => console.log(err.message))   
@@ -36,7 +36,7 @@ const Peliculas = () => {
         e.preventDefault();
         const body = {pelicula, estudio};
         console.log(body);
-        fetch("https://practica-bd.herokuapp.com/peliculas/post",{
+        fetch("/peliculas/post",{
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
