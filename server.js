@@ -80,6 +80,17 @@ if(!dev){
             const listClientes = await pool.query("SELECT * FROM clientes");
             res.json(listClientes.rows);
         }catch(err){
+            console.log(err.message);
+        }
+    });
+
+    app.post('/clientes/post', async(req,res) => {
+        try{
+            console.log(req.body);
+            const date = new Date();
+            const postClientes = await pool.query("INSERT INTO clientes VALUES (DEFAULT,$1,$2,$3,$4,'Activo',$6);",
+                [])
+        }catch(err){
 
         }
     });

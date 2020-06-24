@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
@@ -15,8 +12,8 @@ const Actores = () => {
         fetchActores();
     },[]);
 
-    const fetchActores = () => {
-        fetch("/actores/get")
+    const fetchActores = async() => {
+        await fetch("/actores/get")
         .then( res => res.json())
         .then( result => setActores(result))
         .catch(err => err.message)
@@ -30,10 +27,10 @@ const Actores = () => {
         setNacionalidad(e.target.value);
     };
 
-    const postActor = (e) => {
+    const postActor = async(e) => {
         e.preventDefault();
         const body = {nombre, nacionalidad};
-        fetch("/actores/post",{
+        await fetch("/actores/post",{
             method: "POST",
             headers: {"Content-type":"application/json"},
             body: JSON.stringify(body)
