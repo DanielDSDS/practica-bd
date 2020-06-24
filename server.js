@@ -40,6 +40,16 @@ if(!dev){
             console.log(err.message);
         }
     });
+
+    app.post('/actores/post', async(req,res) => {
+        try{
+            console.log(req.body);
+            const postActores = await pool.query("INSERT INTO actores VALUES(DEFAULT, $1,$2);",
+                [req.body.nombre, req.body.nacionalidad]);
+        }catch(err){
+
+        }
+    })
       
     //Queries de peliculas
     //Obtener lista de peliculas
@@ -56,7 +66,8 @@ if(!dev){
         try{
             console.log(req.body);
             const date = new Date();
-            const postPeliculas = await pool.query("INSERT INTO peliculas VALUES(DEFAULT,$1,$2,$3,NULL);",[req.body.pelicula,req.body.estudio,date]);
+            const postPeliculas = await pool.query("INSERT INTO peliculas VALUES(DEFAULT,$1,$2,$3,NULL);",
+                [req.body.pelicula,req.body.estudio,date]);
         }catch(err){ 
             console.log(err.message);
         }
