@@ -22,6 +22,7 @@ const Clientes = () => {
     }
 
     const postCliente = async(e) => {
+        e.preventDefault();
         const body = {nombre,cedula,direccion,telefono};
         await fetch("/clientes/post",{
             method:"POST",
@@ -33,8 +34,8 @@ const Clientes = () => {
     return(
         <div className="clientes-container">
             <div>
-                <form onSubmit={postCliente} className="">
-                    <div>
+                <form onSubmit={postCliente} className="actores-form">
+                    <div className="wrapper">
                         <FormControl class="form-control-nombre">
                             <TextField
                                 type="text"
