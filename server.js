@@ -88,8 +88,8 @@ if(!dev){
         try{
             console.log(req.body);
             const date = new Date();
-            const postClientes = await pool.query("INSERT INTO clientes VALUES (DEFAULT,$1,$2,$3,$4,'Activo',$6);",
-                [])
+            const postClientes = await pool.query("INSERT INTO clientes VALUES (DEFAULT,$1,$2,$3,$4,'Activo',$5);",
+                [req.body.nombre,req.body.cedula,req.body.direccion,req.body.telefono,date])
         }catch(err){
 
         }
