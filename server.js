@@ -91,7 +91,7 @@ if(!dev){
             const postClientes = await pool.query("INSERT INTO clientes VALUES (DEFAULT,$1,$2,$3,$4,'Activo',$5);",
                 [req.body.cedula,req.body.nombre,req.body.direccion,req.body.telefono,date])
         }catch(err){
-
+            console.log(err.message);
         }
     });
 
