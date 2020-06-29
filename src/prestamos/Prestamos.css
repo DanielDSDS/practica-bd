@@ -1,0 +1,11 @@
+.form-1 .form-control-clientes,
+.form-1 .form-control-peliculas {
+    min-width: 12rem;
+    margin: 1rem;
+}
+
+.form-2 .form-control-dias,
+.form-2 .form-control-devolucion {
+    min-width: 12rem;
+    margin: 1rem;
+}

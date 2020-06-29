@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import './Clientes.css';
 
 const Clientes = () => {
     const [clientes,setClientes] = useState([]);
@@ -33,54 +34,55 @@ const Clientes = () => {
 
     return(
         <div className="clientes-container">
-            <div>
-                <form onSubmit={postCliente} className="actores-form">
+            <h4 className="center">Insertar un nuevo cliente</h4>
+                <form className="clientes-form" onSubmit={postCliente} >
                     <div className="wrapper">
-                        <FormControl class="form-control-nombre">
-                            <TextField
-                                type="text"
-                                onChange={e => setNombre(e.target.value)}
-                                placeholder="Nombre de Cliente"
-                            >
-                            </TextField>  
-                        </FormControl>
-                        <FormControl className="form-control-cedula">
-                            <TextField
-                                type="text"
-                                onChange={e => setCedula(e.target.value)}
-                                placeholder="Cedula de cliente"
-                            >
-                            </TextField>
-                        </FormControl>
+                        <div className="form-1">
+                            <FormControl class="form-control-nombrec">
+                                <TextField
+                                    type="text"
+                                    placeholder="Nombre de Cliente"
+                                    onChange={e => setNombre(e.target.value)}
+                                >
+                                </TextField>  
+                            </FormControl>
+                            <FormControl className="form-control-cedula">
+                                <TextField
+                                    type="text"
+                                    placeholder="Cedula de cliente"
+                                    onChange={e => setCedula(e.target.value)}
+                                >
+                                </TextField>
+                            </FormControl>
+                        </div>
+                        <div className="form-2">
+                            <FormControl className="form-control-direccion">
+                                <TextField
+                                    type="text"
+                                    placeholder="Direccion del cliente"
+                                    onChange={e => setDireccion(e.target.value)}
+                                >
+                                </TextField>    
+                            </FormControl>    
+                            <FormControl className="form-control-telefono">
+                                <TextField
+                                    type="text" 
+                                    placeholder="Numero de telefono del cliente"
+                                    onChange={e => setTelefono(e.target.value)}
+                                >
+                                </TextField>
+                            </FormControl>    
+                        </div>
+                        <Button 
+                            variant="contained"
+                            color="default"
+                            type="submit"
+                            disableElevation
+                        >
+                            Insertar cliente
+                        </Button>
                     </div>
-                    <div>
-                        <FormControl className="form-control-direccion">
-                            <TextField
-                                type="text"
-                                onChange={e => setDireccion(e.target.value)}
-                                placeholder="Direccion del cliente"
-                            >
-                            </TextField>    
-                        </FormControl>    
-                        <FormControl className="form-control-telefono">
-                            <TextField
-                                type="text" 
-                                onChange={e => setTelefono(e.target.value)}
-                                placeholder="Numero de telefono del cliente"
-                            >
-                            </TextField>
-                        </FormControl>    
-                    </div>
-                    <Button 
-                        variant="contained"
-                        color="default"
-                        type="submit"
-                        disableElevation
-                    >
-                        Insertar cliente
-                    </Button>
                 </form>
-            </div>
             <ul className="clientes-list">
                 {clientes.map(cliente => <li key={cliente.id_cliente}>{cliente.nombre_cliente}</li>)}
             </ul>

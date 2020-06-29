@@ -2,16 +2,11 @@
     margin: auto;
 }
 
-.wrapper{
-    margin: auto;
-    text-align: center;
-}
-
 .form-1 .form-control-select{
-    min-width: 12rem ;
+    min-width: 10rem ;
     margin: 1rem;
 }
 
-.wrapper .form-1 .form-control-nombre {
+.form-1 .form-control-nombre {
     margin: 1rem;
 }

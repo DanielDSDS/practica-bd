@@ -1,0 +1,12 @@
+.form-1 .form-control-nombrec,
+.form-1 .form-control-cedula,
+.form-2 .form-control-direccion,
+.form-2 .form-control-telefono {
+    margin: 1rem;
+    display: inline-block;
+}
+
+.clientes-container{
+    margin: auto;
+}
+

@@ -106,6 +106,17 @@ if(!dev){
         }
     });
 
+    app.post('/prestamos', async(req,res) => {
+        try{
+            console.log(req.body);
+            const date = new Date();
+            const postPrestamo = await pool.query("INSERT INTO prestamos VALUES($1,$2,$3,$4,$5,$6)",
+            [req.body.id_cliente,req.body.id_pelicula,date,req.body.dias_prestamo,req.body.devolucion,req.body.estatus]);     
+        }catch(err){
+            console.log(err.message);
+        }
+    });
+
     //Queries de estudios
     //Obtener lista de estudios
     app.get('/estudios/get',async(req,res) => {
@@ -114,6 +125,16 @@ if(!dev){
             res.json(listEstudios.rows);
         }catch(err){
 
+        }
+    });
+
+    app.post('/estudios', async(req,res) => {
+        try{
+            console.log(req.body);
+            const postEstudio = await pool.query("INSERT INTO estudios VALUES(DEFAULT,$1,$2);",
+            [req.body.estudio, req.body.nacionalidad]);
+        }catch(err){
+            console.log(err.message);
         }
     });
 

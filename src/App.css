@@ -39,3 +39,8 @@ a:hover {
 .center {
     text-align: center;
 }
+
+.wrapper{
+    margin: auto;
+    text-align: center;
+}

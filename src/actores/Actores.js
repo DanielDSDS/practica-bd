@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import './Actores.css';
 
 const Actores = () => {
     const [actores,setActores] = useState([]);
@@ -39,35 +40,37 @@ const Actores = () => {
 
     return(
         <div className="actores-container">
+            <h4 className="center">Insertar un nuevo actor</h4>
             <form className="actores-form" onSubmit={postActor}>
-                <div className="wrapper">
-                    <FormControl className="form-control-name">
-                        <TextField 
-                            type="text" 
-                            placeholder="Nombre de Actor"
-                            onChange={nameHandler}
-                        >
-                        </TextField>
-                    </FormControl>
-                    <FormControl className="form-control-nacionalidad">
-                        <TextField 
-                            type="text"
-                            placeholder="Nacionalidad de Actor"
-                            onChange={nacionalidadHandler}
-                        >
-                        </TextField>
-                    </FormControl>
+                <div className="wrapper">                 
+                    <div className="form-1">
+                        <FormControl className="form-control-name">
+                            <TextField 
+                                type="text" 
+                                placeholder="Nombre de Actor"
+                                onChange={nameHandler}
+                            >
+                            </TextField>
+                        </FormControl>
+                        <FormControl className="form-control-nacionalidad">
+                            <TextField 
+                                type="text"
+                                placeholder="Nacionalidad de Actor"
+                                onChange={nacionalidadHandler}
+                            >
+                            </TextField>
+                        </FormControl>
+                    </div>
+                    <Button 
+                        variant="contained"
+                        color="default"
+                        type="submit"
+                        disableElevation
+                    >
+                        Insertar actor
+                    </Button>
                 </div>
-                <Button 
-                    variant="contained"
-                    color="default"
-                    type="submit"
-                    disableElevation
-                >
-                    Insertar actor
-                </Button>
             </form>
-
 
             <ul className="actores-list">
                 {actores.map(actor => <li key={actor.id_actor}>{actor.nombre_actor}</li>)}
