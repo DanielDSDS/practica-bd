@@ -11,17 +11,17 @@ const Estudios = () => {
         fetchEstudios();
     }, [])
 
-    const fetchEstudios = () => {
-        fetch("/estudios/get")
+    const fetchEstudios = async() => {
+        await fetch("/estudios/get")
         .then(res => res.json())
         .then(result => setEstudios(result))
         .catch(err => err.message)
     }
 
-    const postEstudio = (e) => {
+    const postEstudio = async(e) => {
         e.preventDefault();
         const body = {estudio, pais};
-        fetch("/estudios",{
+        await fetch("/estudios",{
             method: "POST",
             headers: {"Content-type":"application/json"},
             body: JSON.stringify(body)

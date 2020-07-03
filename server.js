@@ -111,7 +111,7 @@ if(!dev){
             console.log(req.body);
             const date = new Date();
             const postPrestamo = await pool.query("INSERT INTO prestamos VALUES($1,$2,$3,$4,$5,$6)",
-            [req.body.id_cliente,req.body.id_pelicula,date,req.body.dias_prestamo,req.body.devolucion,req.body.estatus]);     
+            [req.body.cliente,req.body.pelicula,date,req.body.dias,req.body.devolucion,req.body.status]);     
         }catch(err){
             console.log(err.message);
         }

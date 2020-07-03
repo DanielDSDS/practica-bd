@@ -15,8 +15,8 @@ const Clientes = () => {
         fetchClientes();
     }, [])
 
-    const fetchClientes = () => {
-        fetch("/clientes/get")
+    const fetchClientes = async() => {
+        await fetch("/clientes/get")
         .then(res => res.json())
         .then(result => setClientes(result))
         .catch(err => err.message)

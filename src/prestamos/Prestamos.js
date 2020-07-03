@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { FormControl, InputLabel, Select, MenuItem, TextField} from '@material-ui/core';
+import { FormControl, InputLabel, Select, MenuItem, TextField, Button} from '@material-ui/core';
 import './Prestamos.css';
 
 const Prestamos = () => {
@@ -7,9 +7,11 @@ const Prestamos = () => {
     const [cliente,setCliente] = useState("");
     const [clientes,setClientes] = useState([]);
     const [pelicula,setPelicula] = useState("");
+    const [status, setStatus] = useState("");
     const [peliculas,setPeliculas] = useState([]);
     const [devolucion,setDevolucion] = useState("");
     const [dias,setDias] = useState("");
+    const estados = ["AT","VI","CR","CD"];
 
     useEffect(() => {
         fetchPrestamos();
@@ -17,31 +19,41 @@ const Prestamos = () => {
         fetchPeliculas();
     },[]);
 
-    const fetchPrestamos = () => {
-        fetch("/prestamos/get")
+    const fetchPrestamos = async() => {
+        await fetch("/prestamos/get")
         .then(res => res.json())
         .then(result => setPrestamos(result))
         .catch(err => console.log(err.message))
     }
 
-    const fetchClientes = () => {
-        fetch("/clientes/get")
+    const fetchClientes = async() => {
+        await fetch("/clientes/get")
         .then(res => res.json())
         .then(result => setClientes(result))
         .catch(err => console.log(err.message))
     }
 
-    const fetchPeliculas = () => {
-        fetch("/peliculas/get")
+    const fetchPeliculas = async() => {
+        await fetch("/peliculas/get")
         .then(res => res.json())
         .then(result => setPeliculas(result))
         .catch(err => console.log(err.message))
     }
 
+    const postPrestamo = async(e) => {
+        e.preventDefault();
+        const body = {cliente,pelicula,status,devolucion,dias};
+        await fetch("/prestamos",{
+            method:"POST",
+            headers:{"Content-type":"application/json"},
+            body: JSON.stringify(body)
+        })
+    }
+
     return(
         <div className="prestamos-container">
             <h4 className="center">Insertar un nuevo prestamo</h4>
-            <form>
+            <form onSubmit={postPrestamo}>
                 <div className="wrapper">
                     <div className="form-1">
                         <FormControl className="form-control-clientes">
@@ -86,6 +98,28 @@ const Prestamos = () => {
                                     }       
                                 </Select>
                         </FormControl>
+                        <FormControl className="form-control-status">
+                            <InputLabel id="status-label">
+                                <Select
+                                    labelId="status-label"
+                                    label="Status"
+                                    value={status}
+                                    onChange={e => setStatus(e.target.value)}
+                                    onBlur={e => setStatus(e.target.value)}
+                                >
+                                    {status===undefined
+                                        ?<MenuItem value="">Status</MenuItem>
+                                        :estados.map((item,i) => <MenuItem 
+                                                key={item[i]} 
+                                                value={item[i]}
+                                                name={item[i]}
+                                                >
+                                                    {item[i]}
+                                                </MenuItem>)  
+                                    }                            
+                                </Select>
+                            </InputLabel>
+                        </FormControl>
                     </div>
                     <div className="form-2">
                         <FormControl className="form-control-devolucion">
@@ -94,7 +128,7 @@ const Prestamos = () => {
                                 placeholder="Fecha de Devolucion"
                                 onChange={e => setDevolucion(e.target.value)}
                                 onBlur={e => setDevolucion(e.target.value)}
-                                value=""
+                                value={devolucion}
                             >
                             </TextField>
                         </FormControl>
@@ -104,13 +138,21 @@ const Prestamos = () => {
                                 placeholder="Dias de prestamo"
                                 onChange={e => setDias(e.target.value)}
                                 onBlur={e => setDias(e.target.value)}
-                                value=""
+                                value={dias}
                             >
                             </TextField>
                         </FormControl>
                     </div>
                 </div>
+                <Button
+                    type="submit"
+                    color="default"
+                    variant="contained"
+                    disableElevation
+                >Crear nuevo prestamo
+                </Button>
             </form>
+            
             <ul className="prestamos-list">
                 {prestamos.map(prestamo => <li 
                     key={prestamo.num_cliente + prestamo.fec_prestamo + prestamo.id_pelicula}

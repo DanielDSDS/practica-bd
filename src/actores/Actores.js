@@ -3,22 +3,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import './Actores.css';
+import ActoresTable from './ActoresTable';
 
 const Actores = () => {
     const [actores,setActores] = useState([]);
     const [nombre,setNombre] = useState("");
     const [nacionalidad, setNacionalidad] = useState("");
-
-    useEffect(() => {
-        fetchActores();
-    },[]);
-
-    const fetchActores = async() => {
-        await fetch("/actores/get")
-        .then( res => res.json())
-        .then( result => setActores(result))
-        .catch(err => err.message)
-    };
 
     const nameHandler = (e) => {
         setNombre(e.target.value);
@@ -70,11 +60,11 @@ const Actores = () => {
                         Insertar actor
                     </Button>
                 </div>
-            </form>
-
+            </form> 
             <ul className="actores-list">
                 {actores.map(actor => <li key={actor.id_actor}>{actor.nombre_actor}</li>)}
             </ul>
+            <ActoresTable/>
         </div>
     );
 }
