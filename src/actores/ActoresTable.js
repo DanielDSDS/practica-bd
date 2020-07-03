@@ -22,15 +22,13 @@ const ActoresTable = () => {
         .then(res => res.json())
         .then(result => setActores(result))
         .catch(err => console.log(err.message))
-    
     }
 
     const deleteActor = async(id_actor) => {
         console.log(id_actor);
-        await fetch("/actores/delete",{
+        await fetch(`/actores/${id_actor}`,{
             method:"DELETE",
-            headers:{"Content-type":"application/json"},
-            body: JSON.stringify({id_actor : id_actor})
+            headers:{"Content-type":"application/json"}
         })
         .then(res => res.json)
         .then(result => console.log(result))

@@ -8,7 +8,6 @@ import Peliculas from './peliculas/Peliculas';
 import Estudios from './estudios/Estudios';
 import Clientes from './clientes/Clientes';
 import Actores from './actores/Actores';
-import Landing from './landing/Landing';
 
 //  "start": "serve -s build",
 
@@ -23,17 +22,15 @@ const App = () => {
             </div>
             <div>
                 <div className="landing-nav">
-                    <Link to={'/'} >Landing</Link>
+                    <Link to={'/'} >Actores</Link>
                     <Link to={'/peliculas'} >Peliculas</Link>
-                    <Link to={'/actores'} >Actores</Link>
                     <Link to={'/estudios'} >Estudios</Link>
                     <Link to={'/clientes'} >Clientes</Link>
                     <Link to={'/prestamos'} >Prestamos</Link>
                 </div>
                 <Switch>
-                    <Route exact path='/' component={Landing}/>
+                    <Route exact path='/' component={Actores}/>
                     <Route path='/peliculas' component={Peliculas}/>
-                    <Route path='/actores' component={Actores}/>
                     <Route path='/estudios' component={Estudios}/>
                     <Route path='/clientes' component={Clientes}/>
                     <Route path="/prestamos" component={Prestamos}/>

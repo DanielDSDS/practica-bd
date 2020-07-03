@@ -50,9 +50,11 @@ if(!dev){
         }
     })
 
-    app.delete('/actores/delete',async(req,res) => {
+    app.delete('/actores/:id',async(req,res) => {
         try{
-            const deleteActor = await pool.query(`DELETE FROM actores WHERE id_actor = ${req.body.id_actor};`);
+            const { id } = req.body.params;
+            const deleteActor = await pool.query("DELETE FROM actores WHERE id_actor = $1;",
+                [id]);
             console.log(deleteActor);
         }catch(err){
             console.log(err.message);
@@ -80,10 +82,11 @@ if(!dev){
         }
     });
 
-    app.delete('/peliculas/delete',async(req,res) => {
+    app.delete('/peliculas/:id',async(req,res) => {
         try{
-            const deletePelicula = await pool.query(`DELETE FROM peliculas WHERE id_pelicula = ${req.body.id_pelicula};`,
-                [req.body.id_pelicula]);
+            const {id} = req.body.params;
+            const deletePelicula = await pool.query("DELETE FROM peliculas WHERE id_pelicula = $1;",
+                [id]);
             console.log(deletePelicula);
         }catch(err){
             console.log(err.message);

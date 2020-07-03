@@ -25,6 +25,16 @@ const PeliculasTable = () => {
         .catch(err => console.log(err.message))
     }
 
+    const deletePeliculas = async(id_pelicula) => {
+        await fetch(`/peliculas/${id_pelicula}`,{
+            method:"DELETE",
+            headers: {"Content-type":"application/json"}
+        })
+        .then(res => res.json())
+        .then(result => console.log(result))
+        .catch(err => err.message)
+    }
+
     return (
       <MaterialTable
         title="Peliculas"
@@ -48,6 +58,7 @@ const PeliculasTable = () => {
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
+                deletePeliculas(oldData.id_pelicula);
                 setState((prevState) => {
                   const data = [...prevState.data];
                   data.splice(data.indexOf(oldData), 1);
