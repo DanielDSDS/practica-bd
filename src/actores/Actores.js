@@ -6,7 +6,6 @@ import './Actores.css';
 import ActoresTable from './ActoresTable';
 
 const Actores = () => {
-    const [actores,setActores] = useState([]);
     const [nombre,setNombre] = useState("");
     const [nacionalidad, setNacionalidad] = useState("");
 
@@ -60,10 +59,7 @@ const Actores = () => {
                         Insertar actor
                     </Button>
                 </div>
-            </form> 
-            <ul className="actores-list">
-                {actores.map(actor => <li key={actor.id_actor}>{actor.nombre_actor}</li>)}
-            </ul>
+            </form>
             <ActoresTable/>
         </div>
     );

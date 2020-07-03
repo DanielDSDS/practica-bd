@@ -43,11 +43,19 @@ if(!dev){
 
     app.post('/actores/post', async(req,res) => {
         try{
-            console.log(req.body);
             const postActores = await pool.query("INSERT INTO actores VALUES(DEFAULT, $1,$2);",
                 [req.body.nombre, req.body.nacionalidad]);
         }catch(err){
 
+        }
+    })
+
+    app.delete('/actores/delete',async(req,res) => {
+        try{
+            const deleteActor = await pool.query(`DELETE FROM actores WHERE id_actor = ${req.body.id_actor};`);
+            console.log(deleteActor);
+        }catch(err){
+            console.log(err.message);
         }
     })
       
@@ -64,7 +72,6 @@ if(!dev){
 
     app.post('/peliculas/post', async(req,res) => {
         try{
-            console.log(req.body);
             const date = new Date();
             const postPeliculas = await pool.query("INSERT INTO peliculas VALUES(DEFAULT,$1,$2,$3,NULL);",
                 [req.body.pelicula,req.body.estudio,date]);
@@ -72,6 +79,16 @@ if(!dev){
             console.log(err.message);
         }
     });
+
+    app.delete('/peliculas/delete',async(req,res) => {
+        try{
+            const deletePelicula = await pool.query(`DELETE FROM peliculas WHERE id_pelicula = ${req.body.id_pelicula};`,
+                [req.body.id_pelicula]);
+            console.log(deletePelicula);
+        }catch(err){
+            console.log(err.message);
+        }
+    })
 
     //Queries de clientes
     //Obtener lista de clientes
@@ -86,7 +103,6 @@ if(!dev){
 
     app.post('/clientes/post', async(req,res) => {
         try{
-            console.log(req.body);
             const date = new Date();
             const postClientes = await pool.query("INSERT INTO clientes VALUES (DEFAULT,$1,$2,$3,$4,'Activo',$5);",
                 [req.body.cedula,req.body.nombre,req.body.direccion,req.body.telefono,date])

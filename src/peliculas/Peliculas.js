@@ -6,24 +6,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import './Peliculas.css';
+import PeliculasTable from './PeliculasTable';
 
 const Peliculas = () => {
-    const [peliculas, setPeliculas] = useState([]);
     const [pelicula, setPelicula] = useState("");
     const [estudios, setEstudios] = useState([]);
     const [estudio, setEstudio] = useState("");
 
     useEffect(() => {
-        fetchPeliculas();
         fetchEstudios();
     }, [pelicula]);
-
-    const fetchPeliculas = async() => {
-        await fetch("/peliculas/get")
-        .then(res => res.json())
-        .then(data => setPeliculas(data))
-        .catch(err => console.log(err.message))
-    }
 
     const fetchEstudios = async() => {
         await fetch("/estudios/get")
@@ -102,10 +94,7 @@ const Peliculas = () => {
                     </Button>
                 </div>
             </form>
-
-            <ul className="peliculas-list">
-                {peliculas.map(pelicula => <li key={pelicula.id_pelicula}>{pelicula.titulo}</li>)}
-            </ul>
+            <PeliculasTable/> 
         </div>
     );
 }

@@ -1,14 +1,15 @@
 import React,{useState,useEffect} from 'react';
 import MaterialTable from 'material-table';
 
-
-const ActoresTable = () => {
-    const [actores,setActores] = useState([]);
+const PeliculasTable = () => {
+    const [peliculas,setPeliculas] = useState([]);
     const [state, setState] = useState({
       columns: [
-        { title: 'id', field: 'id_actor' },
-        { title: 'Nombre', field: 'nombre_actor' },
-        { title: 'Nacionalidad', field: 'nacionalidad'},
+        { title: 'id', field: 'id_pelicula' },
+        { title: 'Estudio', field: 'id_estudio' },
+        { title: 'Titulo', field: 'titulo'},
+        { title: 'Inclusion', field: 'fec_inclusion'},
+        { title: 'Desincorporacion', field: 'fec_desincorporacion'},
       ],
       data: [],
     });
@@ -18,29 +19,17 @@ const ActoresTable = () => {
     },[])
 
     const fetchActores = async() => {
-        await fetch("/actores/get")
+        await fetch("/peliculas/get")
         .then(res => res.json())
-        .then(result => setActores(result))
+        .then(result => setPeliculas(result))
         .catch(err => console.log(err.message))
-    
-    }
-
-    const deleteActor = async(id_actor) => {
-        console.log(id_actor);
-        await fetch("/actores/delete",{
-            method:"DELETE",
-            headers:{"Content-type":"application/json"},
-            body: JSON.stringify({id_actor : id_actor})
-        })
-        .then(res => res.json)
-        .then(result => console.log(result))
     }
 
     return (
       <MaterialTable
-        title="Actores"
+        title="Peliculas"
         columns={state.columns}
-        data={actores}
+        data={peliculas}
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
@@ -56,11 +45,9 @@ const ActoresTable = () => {
               }, 600);
             }),
           onRowDelete: (oldData) =>
-            
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
-                deleteActor(oldData.id_actor);
                 setState((prevState) => {
                   const data = [...prevState.data];
                   data.splice(data.indexOf(oldData), 1);
@@ -73,4 +60,4 @@ const ActoresTable = () => {
     );
   }
 
-export default ActoresTable;
+export default PeliculasTable;
