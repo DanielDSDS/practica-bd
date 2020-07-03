@@ -32,6 +32,7 @@ const ActoresTable = () => {
         })
         .then(res => res.json)
         .then(result => console.log(result))
+        .catch(err => console.log(err.message))
     }
 
     return (
@@ -54,11 +55,10 @@ const ActoresTable = () => {
               }, 600);
             }),
           onRowDelete: (oldData) =>
-            
             new Promise((resolve) => {
+              deleteActor(oldData.id_actor);
               setTimeout(() => {
                 resolve();
-                deleteActor(oldData.id_actor);
                 setState((prevState) => {
                   const data = [...prevState.data];
                   data.splice(data.indexOf(oldData), 1);

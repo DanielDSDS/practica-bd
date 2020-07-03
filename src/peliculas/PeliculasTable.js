@@ -56,9 +56,9 @@ const PeliculasTable = () => {
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
+              deletePeliculas(oldData.id_pelicula);
               setTimeout(() => {
                 resolve();
-                deletePeliculas(oldData.id_pelicula);
                 setState((prevState) => {
                   const data = [...prevState.data];
                   data.splice(data.indexOf(oldData), 1);
