@@ -55,7 +55,6 @@ if(!dev){
             const { id } = req.body.params;
             const deletePxA =  await pool.query("DELETE FROM actores WHERE id_actor = $1;",
                 [id]);
-            console.log(deletePxA);
         }catch(err){
             console.log(err.message);
         }
