@@ -53,9 +53,12 @@ if(!dev){
     app.delete('/actores/:id',async(req,res) => {
         try{
             const { id } = req.body.params;
+            const deletePxA =  await pool.query("DELETE FROM peliculas_x_actores WHERE id_actor = $1;",
+                [id]);
             const deleteActor = await pool.query("DELETE FROM actores WHERE id_actor = $1;",
                 [id]);
-            console.log(deleteActor);
+
+            console.log(deletePxA,deleteActor);
         }catch(err){
             console.log(err.message);
         }

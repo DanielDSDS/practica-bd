@@ -26,13 +26,14 @@ const PeliculasTable = () => {
     }
 
     const deletePeliculas = async(id_pelicula) => {
+        console.log(id_pelicula);
         await fetch(`/peliculas/${id_pelicula}`,{
             method:"DELETE",
             headers: {"Content-type":"application/json"}
         })
         .then(res => res.json())
         .then(result => console.log(result))
-        .catch(err => err.message)
+        .catch(err => console.log(err.message))
     }
 
     return (
