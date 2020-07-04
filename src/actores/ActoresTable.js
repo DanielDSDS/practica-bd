@@ -25,11 +25,24 @@ const ActoresTable = () => {
     }
 
     const deleteActor = async(id_actor) => {
-        console.log(id_actor);
         await fetch(`/actores/${id_actor}`,{
-            method:"DELETE"
+            method:"DELETE",
+            headers: {"Content-type":"application/json"}
         })
         .then(res => res.json)
+        .then(result => console.log(result))
+        .catch(err => console.log(err.message))
+    }
+
+    const updateActor = async(actor) => {
+        console.log(actor);
+        const {id_actor,nombre, nacionalidad} = actor;
+        await fetch(`/actores/${id_actor}`,{
+            method:"PUT",
+            headers: {"Content-type":"application/json"},
+            body: JSON.stringify({id_actor,nombre,nacionalidad})
+        })
+        .then(res => res.json())
         .then(result => console.log(result))
         .catch(err => console.log(err.message))
     }
@@ -44,6 +57,8 @@ const ActoresTable = () => {
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
+                updateActor(newData);
+                console.log(newData);
                 if (oldData) {
                   setState((prevState) => {
                     const data = [...prevState.data];

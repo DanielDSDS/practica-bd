@@ -36,6 +36,20 @@ const PeliculasTable = () => {
         .catch(err => console.log(err.message))
     }
 
+    const updatePelicula = async(pelicula) => {
+        console.log(pelicula);
+        const {id_pelicula, id_estudio, titulo, fec_inclusion, fec_desincorporacion} = pelicula;
+        const updateMovie = await fetch(`/pelicula/${id_pelicula}`,{
+            method:"PUT",
+            headers: {"Content-type":"application/json"},
+            body: JSON.stringify({id_pelicula, id_estudio, titulo, fec_inclusion, fec_desincorporacion})
+        })
+        .then(res => res.json())
+        .then(result => console.log(result))
+        .catch(err => console.log(err.message));
+        console.log(updateMovie);
+    }
+
     return (
       <MaterialTable
         title="Peliculas"
@@ -46,6 +60,8 @@ const PeliculasTable = () => {
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
+                updatePelicula(newData);
+                console.log(newData);
                 if (oldData) {
                   setState((prevState) => {
                     const data = [...prevState.data];

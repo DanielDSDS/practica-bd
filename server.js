@@ -52,9 +52,20 @@ if(!dev){
 
     app.delete('/actores/:id',async(req,res) => {
         try{
-            const { id } = req.body.params;
+            const { id } = req.params;
             const deletePxA =  await pool.query("DELETE FROM actores WHERE id_actor = $1;",
                 [id]);
+        }catch(err){
+            console.log(err.message);
+        }
+    })
+
+    app.put('/actores/:id',async(req,res) => {
+        try{
+            const {id} = req.params;
+            const updateActor = await pool.query("UPDATE actores SET nombre_actor = $1, nacionalidad = $2 WHERE id_actor = $3",
+            [req.body.nombre, req.body.nacionalidad, req.body.id_actor]);
+            console.log(updateActor);
         }catch(err){
             console.log(err.message);
         }
@@ -83,11 +94,23 @@ if(!dev){
 
     app.delete('/peliculas/:id',async(req,res) => {
         try{
-            const {id} = req.body.params;
+            const {id} = req.params;
             const deletePelicula = await pool.query("DELETE FROM peliculas WHERE id_pelicula = $1",
                 [id]);
             console.log(deletePelicula);
         }catch(err){
+            console.log(err.message);
+        }
+    })
+
+    app.put('/peliculas/:id',async(req,res) => {
+        try{
+            const {id} = req.params;
+            const query = "UPDATE peliculas SET id_estudio=$1,titulo=$2,fec_inclusion=$3,fec_desincorporacion=$4 WHERE id_pelicula=$5"
+            const updatePelicula = await pool.query(query,
+                [req.body.id_estudio, req.body.titulo, req.body.fec_inclusion,req.body.fec_desincorporacion,req.body.id_pelicula]);
+            console.log(updatePelicula);        
+            }catch(err){
             console.log(err.message);
         }
     })
