@@ -53,12 +53,9 @@ if(!dev){
     app.delete('/actores/:id',async(req,res) => {
         try{
             const { id } = req.body.params;
-            const deletePxA =  await pool.query("DELETE FROM peliculas_x_actores WHERE id_actor = $1;",
+            const deletePxA =  await pool.query("DELETE FROM peliculas_x_actores WHERE id_actor = $1; DELETE FROM actores WHERE id_actor = $1;",
                 [id]);
-            const deleteActor = await pool.query("DELETE FROM actores WHERE id_actor = $1;",
-                [id]);
-
-            console.log(deletePxA,deleteActor);
+            console.log(deletePxA);
         }catch(err){
             console.log(err.message);
         }
@@ -88,7 +85,7 @@ if(!dev){
     app.delete('/peliculas/:id',async(req,res) => {
         try{
             const {id} = req.body.params;
-            const deletePelicula = await pool.query("DELETE FROM peliculas WHERE id_pelicula = $1;",
+            const deletePelicula = await pool.query("DELETE FROM peliculas_x_actores WHERE id_pelicula = $1; DELETE FROM peliculas WHERE id_pelicula = $1",
                 [id]);
             console.log(deletePelicula);
         }catch(err){
