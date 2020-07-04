@@ -57,11 +57,11 @@ const ActoresTable = () => {
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
-                updateActor(newData);
-                console.log(newData);
                 if (oldData) {
                   setState((prevState) => {
                     const data = [...prevState.data];
+                    updateActor(newData);
+                    console.log(newData);
                     data[data.indexOf(oldData)] = newData;
                     return { ...prevState, data };
                   });

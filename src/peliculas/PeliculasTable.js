@@ -40,7 +40,7 @@ const PeliculasTable = () => {
     const updatePelicula = async(pelicula) => {
         console.log(pelicula);
         const {id_pelicula, id_estudio, titulo, fec_inclusion, fec_desincorporacion} = pelicula;
-        const updateMovie = await fetch(`/pelicula/${id_pelicula}`,{
+        await fetch(`/pelicula/${id_pelicula}`,{
             method:"PUT",
             headers: {"Content-type":"application/json"},
             body: JSON.stringify({id_pelicula, id_estudio, titulo, fec_inclusion, fec_desincorporacion})
@@ -48,7 +48,6 @@ const PeliculasTable = () => {
         .then(res => res.json())
         .then(result => console.log(result))
         .catch(err => console.log(err.message));
-        console.log(updateMovie);
     }
 
     return (
@@ -61,11 +60,11 @@ const PeliculasTable = () => {
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
-                updatePelicula(newData);
-                console.log(newData);
                 if (oldData) {
                   setState((prevState) => {
                     const data = [...prevState.data];
+                    updatePelicula(newData);
+                    console.log(newData);
                     data[data.indexOf(oldData)] = newData;
                     return { ...prevState, data };
                   });
