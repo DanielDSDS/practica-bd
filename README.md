@@ -21,7 +21,4 @@ Build del proyecto en [Heroku](https://dashboard.heroku.com/apps/practica-bd/dep
 * `git commit -am "make it better"`
 * `git push heroku master`
 
-## Queries 
-
-
 
